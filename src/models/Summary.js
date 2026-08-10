@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import bcrypt from 'bcrypt';
 
 const toneEnum = ["Human", "Professor", "Architect", "Natural", "Founder"];
 
@@ -28,5 +27,5 @@ const summarySchema = new Schema({
     }
 })
 
-const Summary = mongoose.model.Schema || mongoose.model('Summary', summarySchema);
+const Summary = mongoose.models.Schema || mongoose.model('Summary', summarySchema);
 export default Summary;
