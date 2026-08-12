@@ -21,7 +21,7 @@ export const POST = async (req) => {
                 email: existUser.email
             },  process.env.JWT_SECRET, { expiresIn: '7d' });
 
-            return NextResponse.json({ token, user: { email: existUser.email, id: existUser.id } }, {status: 200})
+            return NextResponse.json({ token, user: { email: existUser.email, id: existUser.id, plan: existUser.plan, summarizeCount: existUser.summarizeCount } }, {status: 200})
         }
     } catch (error) {
         return NextResponse.json({message: error.message}, {status: 500})    

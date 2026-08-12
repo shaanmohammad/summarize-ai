@@ -23,7 +23,9 @@ export const POST = async (req) => {
             token,
             user: {
                 email: newUser.email,
-                id: newUser.id
+                id: newUser.id,
+                plan: newUser.plan,
+                summarizeCount: newUser.summarizeCount
             }
         }, {status: 201})
     } catch (error) {

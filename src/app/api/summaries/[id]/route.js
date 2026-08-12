@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export const DELETE = async (req, { params }) => {
     try {
         await connectDB();
-        const { id } = params;
+        const { id } = await params;
         const decoded = getUserFromToken(req);
         const summary = await Summary.findById(id);
 
@@ -17,7 +17,7 @@ export const DELETE = async (req, { params }) => {
         }
 
         await summary.deleteOne();
-        return NextResponse.json({}, { status: 204 })
+        return new Response(null, { status: 204 });
     } catch (error) {
         if (error.name === "CastError") {
             return NextResponse.json({ message: "Invalid summary ID format." }, { status: 400 });
