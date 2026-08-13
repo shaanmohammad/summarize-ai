@@ -5,7 +5,6 @@ import { connectDB } from "@/utils/db";
 export const revalidate = 60; // ISR: regenerate this page at most once every 60 seconds
 
 async function getStats() {
-  console.log("getStats ran at", new Date().toISOString());
   await connectDB();
   const totalSummaries = await Summary.countDocuments();
   const totalUsers = await User.countDocuments();
