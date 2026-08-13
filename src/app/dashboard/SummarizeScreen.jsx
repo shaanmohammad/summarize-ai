@@ -230,7 +230,7 @@ const SummarizeScreen = ({ setSavedSummaries }) => {
                 <ToneBadge tone={summary.tone} />
               </div>
             </div>
-
+            {summary.title !== "Not summarizable" && (
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -255,6 +255,7 @@ const SummarizeScreen = ({ setSavedSummaries }) => {
                 <CopyIcon className="h-5 w-5" />
               </button>
             </div>
+            )}
           </div>
 
           {/* Summary text */}
