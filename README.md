@@ -2,7 +2,7 @@
 
 A full-stack AI-powered app that turns long text into a short, tone-matched summary. Paste an article, transcript, or notes, pick a tone (Human, Professor, Architect, or Founder), and get back a clean, structured summary you can save for later. Free accounts get 5 summaries a month; Pro accounts get unlimited.
 
-**Live app:** https://live-app-url.com
+**Live app:** https://summarize-ai-eosin.vercel.app/signup
 
 ## Tech Stack
 **Frontend:** Next.js, Context API, Tailwind CSS, Axios
