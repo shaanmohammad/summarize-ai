@@ -103,6 +103,15 @@ export default function DashboardPage() {
     router.replace("/login");
   };
 
+  const handleUpgrade = async () => {
+    try {
+      const response = await axiosApi.post("/checkout");
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const getAllSummaries = async () => {
       try {
@@ -176,11 +185,7 @@ export default function DashboardPage() {
                 <button
                   type="button"
                   className="group relative hidden h-11 items-center gap-2 overflow-hidden rounded-xl border border-amber-400/60 bg-amber-500/[0.10] px-4 text-sm font-medium text-amber-300 shadow-[0_0_25px_rgba(245,158,11,0.08)] transition hover:border-amber-300 hover:bg-amber-400/[0.15] hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] sm:flex"
-                  onClick={() =>
-                    window.alert(
-                      "Please contact admin at shanmohammad1254@gmail.com",
-                    )
-                  }
+                  onClick={handleUpgrade}
                 >
                   <CrownIcon className="h-4 w-4" />
 
