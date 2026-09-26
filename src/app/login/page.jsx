@@ -54,7 +54,7 @@ export default function LoginPage() {
           </span>
         </Link>
 
-        <div className="text-sm text-zinc-400">
+        <div className="text-xs pl-6 text-zinc-400 sm:text-sm sm:pl-0">
           Don't have an account?{" "}
           <Link
             href="/signup"

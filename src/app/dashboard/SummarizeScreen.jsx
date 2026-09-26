@@ -169,13 +169,13 @@ const SummarizeScreen = ({ setSavedSummaries }) => {
                     key={tone.id}
                     type="button"
                     onClick={() => setSelectedTone(tone.id)}
-                    className={`flex h-11 items-center gap-2.5 rounded-xl border px-4 text-sm transition ${
+                    className={`flex h-11 items-center gap-2 rounded-xl border px-4 text-xs transition sm:gap-2.5 sm:text-sm ${
                       selected
                         ? "border-violet-500 bg-violet-600 text-white shadow-[0_0_22px_rgba(139,92,246,0.22)]"
                         : "border-white/[0.10] bg-white/[0.015] text-zinc-300 hover:border-white/[0.18] hover:bg-white/[0.04]"
                     }`}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
 
                     {tone.id}
                   </button>

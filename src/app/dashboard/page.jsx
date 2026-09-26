@@ -188,16 +188,29 @@ export default function DashboardPage() {
                   onClick={handleUpgrade}
                 >
                   <CrownIcon className="h-4 w-4" />
-
                   <span>Upgrade to Pro</span>
+                </button>
+                <button
+                  type="button"
+                  className="text-xs flex flex-col items-center font-medium pr-2 text-amber-300 sm:hidden"
+                  onClick={handleUpgrade}
+                >
+                  <CrownIcon className="h-4 w-4" />
+                  <span>Upgrade</span>
                 </button>
               </>
             ) : (
+              <>
               <span className="group relative hidden h-11 items-center gap-2 overflow-hidden rounded-xl border border-amber-400/60 bg-amber-500/[0.10] px-4 text-sm font-medium text-amber-300 shadow-[0_0_25px_rgba(245,158,11,0.08)] transition sm:flex">
                 <CrownIcon className="h-4 w-4" />
 
                 <span>Pro Plan Activated</span>
               </span>
+              <span className="text-xs flex flex-col pr-2 items-center font-medium text-amber-300 sm:hidden">
+                <CrownIcon className="h-4 w-4" />
+                <span>Pro Plan</span>
+              </span>
+              </>
             )}
 
             {/* Profile */}
@@ -207,7 +220,7 @@ export default function DashboardPage() {
                 onClick={() => setShowProfileMenu((prev) => !prev)}
                 className="flex items-center gap-2 transition"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.10] bg-[#202534] text-sm font-medium text-zinc-200">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.10] bg-[#202534] text-xs font-medium text-zinc-200 sm:h-10 sm:w-10 sm:text-sm">
                   {user.email[0].toUpperCase()}
                 </div>
 
@@ -233,21 +246,23 @@ export default function DashboardPage() {
       {/* MOBILE USAGE                                                     */}
       {/* ================================================================ */}
 
-      <div className="relative z-10 mx-4 mt-3 sm:hidden">
-        <div className="rounded-xl border border-white/[0.07] bg-[#090c13] px-4 py-3">
-          <div className="mb-2 flex justify-between">
-            <span className="text-xs text-zinc-400">
-              3 of 5 free summaries used
-            </span>
+      {user.plan === "free" && (
+        <div className="relative z-10 mx-4 mt-3 sm:hidden">
+          <div className="rounded-xl border border-white/[0.07] bg-[#090c13] px-4 py-3">
+            <div className="mb-2 flex justify-between">
+              <span className="text-xs text-zinc-400">
+                {user.summarizeCount} of 5 free summaries used
+              </span>
 
-            <span className="text-xs text-zinc-600">60%</span>
-          </div>
+              <span className="text-xs text-zinc-600">60%</span>
+            </div>
 
-          <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
-            <div className="h-full w-[60%] rounded-full bg-violet-500" />
+            <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+              <div className="h-full w-[60%] rounded-full bg-violet-500" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ================================================================ */}
       {/* MAIN CONTENT                                                     */}
