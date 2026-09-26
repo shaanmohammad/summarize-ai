@@ -1,17 +1,20 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Link from "next/link";
 import { SparklesIcon, MailIcon, LockIcon, EyeIcon, EyeOffIcon, ArrowIcon, ErrorIcon } from "@/utils/common";
 import axiosApi from "@/utils/axios";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import Spinner from "@/components/Spinner";
 
 export default function SignupPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const isSubmitting = useRef(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -36,13 +39,19 @@ export default function SignupPage() {
       return;
     }
 
+    if(isSubmitting.current) return
+    isSubmitting.current = true
+
     try {
+        setIsLoading(true);
         const response = await axiosApi.post('/auth/signup', {email: formData.email, password: formData.password});
         setError(false)
         login(response.data.user, response.data.token);
         router.replace("/dashboard");
     } catch (error) {
-        setError(error.response?.data?.message || "Something went wrong. Please try again.");    
+        setError(error.response?.data?.message || "Something went wrong. Please try again.");
+        setIsLoading(false)  
+        isSubmitting.current = false
     }
   };
 
@@ -264,10 +273,13 @@ export default function SignupPage() {
                 className="group relative mt-2 flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-violet-600 text-sm font-semibold text-white shadow-lg shadow-violet-600/20 transition hover:bg-violet-500 hover:shadow-violet-500/30 active:scale-[0.99]"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-
-                <span className="relative">
-                  Create account
-                </span>
+                {isLoading ?
+                  <Spinner/>
+                : 
+                  <span className="relative">
+                    Create account
+                  </span>
+                }
 
                 <ArrowIcon className="relative h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </button>
